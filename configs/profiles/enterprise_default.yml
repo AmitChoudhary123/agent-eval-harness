@@ -1,0 +1,13 @@
+name: enterprise_default
+release_threshold: 0.75
+hard_gates:
+  - task_success
+  - approval_compliance
+weights:
+  task_success: 0.30
+  evidence_coverage: 0.20
+  latency_budget: 0.10
+  cost_budget: 0.10
+  approval_compliance: 0.15
+  safety: 0.10
+  low_rework: 0.05
