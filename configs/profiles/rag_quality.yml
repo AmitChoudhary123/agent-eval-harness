@@ -1,0 +1,13 @@
+name: rag_quality
+release_threshold: 0.78
+hard_gates:
+  - task_success
+  - approval_compliance
+weights:
+  task_success: 0.25
+  evidence_coverage: 0.35
+  latency_budget: 0.10
+  cost_budget: 0.05
+  approval_compliance: 0.10
+  safety: 0.10
+  low_rework: 0.05
