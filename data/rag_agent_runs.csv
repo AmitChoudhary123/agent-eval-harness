@@ -1,0 +1,5 @@
+agent,task,task_success,evidence_coverage,latency_ms,latency_budget_ms,cost_usd,cost_budget_usd,approval_compliant,safety_incidents,rework_minutes
+rag-hybrid-rerank,Answer policy escalation question,true,0.96,2400,4000,0.041,0.080,true,0,5
+rag-vector-only,Answer policy escalation question,true,0.72,1500,4000,0.028,0.080,true,0,18
+rag-fast-cheap,Answer policy escalation question,false,0.43,800,4000,0.009,0.080,true,1,45
+rag-agent-no-citations,Answer policy escalation question,true,0.25,1700,4000,0.022,0.080,true,0,30
