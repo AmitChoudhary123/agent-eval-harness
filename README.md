@@ -1,19 +1,29 @@
 # Agent Eval Harness
 
-A practical benchmark harness for evaluating AI agents and RAG workflows on task success, latency, cost, evidence, and governance.
+Agent Eval Harness is a practical benchmark and release-readiness tool for AI agents and RAG workflows.
 
-## Why this exists
+It helps teams answer one question clearly: **which agent run is good enough to ship, and why?**
 
-The AI agent ecosystem is noisy. Teams need a simple way to compare agents, prompts, tools, and retrieval strategies using repeatable tasks and transparent metrics.
+## Why people should care
 
-## What it evaluates
+AI agent projects are moving fast, but most teams still compare them with anecdotes. This repo provides a small, transparent, reusable harness for scoring agent runs on business-relevant dimensions:
 
 - Task success
 - Evidence or citation coverage
 - Latency budget
 - Cost budget
-- Human approval compliance
-- Overall release readiness
+- Approval compliance
+- Safety incidents
+- Rework required
+
+## What you can run today
+
+```bash
+pip install -r requirements.txt
+pytest -q
+python -m agent_eval.cli score --input data/support_agent_runs.csv --profile configs/profiles/enterprise_default.yml
+python -m agent_eval.cli score --input data/rag_agent_runs.csv --profile configs/profiles/rag_quality.yml --format markdown
+```
 
 ## Demo
 
@@ -21,35 +31,38 @@ The AI agent ecosystem is noisy. Teams need a simple way to compare agents, prom
 python demo/run_demo.py
 ```
 
-The demo scores three sample agent runs and prints a small leaderboard.
+The demo prints a leaderboard and shows which runs are release-ready.
 
-## Repository structure
+## Features
+
+- CSV benchmark input format
+- YAML metric profiles
+- Weighted scoring engine
+- Release-readiness gates
+- Markdown report renderer
+- Sample benchmark packs for support agents and RAG agents
+- Tests and CI
+- Docs for designing repeatable agent evaluations
+
+## Repository map
 
 ```text
-agent_eval/           Scoring and leaderboard engine
-data/                 Sample task results
-demo/                 Runnable benchmark demo
-docs/                 Metrics and benchmark design
-tests/                Unit tests
-```
-
-## Quick start
-
-```bash
-python -m venv .venv
-pip install -r requirements.txt
-pytest -q
-python demo/run_demo.py
+agent_eval/              Scoring, profiles, reports, CLI
+configs/profiles/        Metric weighting profiles
+data/                    Sample benchmark runs
+demo/                    One-command demo
+docs/                    Metrics, benchmark design, usage, roadmap
+tests/                   Unit and benchmark tests
 ```
 
 ## Community roadmap
 
-- Add JSONL benchmark format
-- Add adapters for AutoGPT-style and LangGraph-style traces
-- Add RAGAS/custom evaluator hooks
-- Add GitHub Pages leaderboard output
-- Add sample benchmark packs for support, finance, and compliance agents
+- JSONL trace format
+- GitHub Pages leaderboard publishing
+- LangGraph / AutoGPT-style trace adapters
+- RAGAS and custom evaluator hooks
+- Domain benchmark packs for finance, legal, operations, and customer support
 
 ## Enterprise relevance
 
-This project gives AI leaders a reusable way to ask: should this agent be shipped, monitored, improved, or stopped?
+This project makes agent evaluation reviewable by engineers, product leaders, risk teams, and executives. It turns agent quality from opinion into a repeatable scorecard.
